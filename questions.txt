@@ -1,5 +1,5 @@
 What is the capital of France?
-2
+1
 Paris
 Rome
 Berlin
@@ -13,7 +13,7 @@ Mars
 Earth
 Jupiter
 Who wrote 'To Kill a Mockingbird'?
-4
+6
 Harper Lee
 Mark Twain
 Ernest Hemingway
