@@ -33,3 +33,10 @@ zle
 ok
 super
 dobre
+
+0
+
+
+
+
+
