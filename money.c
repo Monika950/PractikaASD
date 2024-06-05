@@ -82,24 +82,20 @@ Collection* read_questions(const char *filename)
 
         Question q;
         strcpy(q.question, line);
-        printf("%s\n", q.question);
 
         if (fgets(line, sizeof(line), file) == NULL) break;
         q.difficulty = atoi(line);
-        printf("%d\n", q.difficulty);
 
         for (int i = 0; i < 4; i++)
         { 
             if (fgets(line, sizeof(line), file) == NULL) break;
             line[strcspn(line, "\n")] = '\0'; 
             strcpy(q.answers[i], line);
-            printf("%s\n", q.answers[i]);
         }
 
         if (fgets(line, sizeof(line), file) == NULL) break;
         line[strcspn(line, "\n")] = '\0'; 
         strcpy(q.correctAns, line);
-        printf("%s\n", q.correctAns);
 
         col->questions[col->size]=q;
         col->size++;
@@ -109,21 +105,6 @@ Collection* read_questions(const char *filename)
             break;
         }
     }
-
-
-for( int i = 0; i < col->size; i++ )
-  {
-    Question q = col->questions[i];
-    printf("%s\n%d\n",q.question,q.difficulty);
-
-    for (int i = 0; i < 4; i++)
-    {
-      printf( "%s\n", q.answers[i]);
-    }
-
-    printf("%s\n", q.correctAns);
-  }
-
 
     fclose(file);
 
