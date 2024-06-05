@@ -112,30 +112,68 @@ Collection* read_questions(const char *filename)
 }
 
 
-void add_question()
-{
+void add_question(Collection* col) {
+    if(col->size==MAX_Q-1)
+    {
+      printf("Question limit exceeded\n");
+      return;
+    }
+
+    char line[100];
+    Question q;
+
+    printf("Enter the question: ");
+    fgets(line, sizeof(line), stdin);
+    line[strcspn(line, "\n")] = '\0';
+    strcpy(q.question, line);
+
+    printf("Enter the difficulty (1-10): ");
+    fgets(line, sizeof(line), stdin);
+    q.difficulty = atoi(line);
+
+    for (int i = 0; i < 4; i++) {
+      printf("Enter answer %d: ", i + 1);
+      fgets(line, sizeof(line), stdin);
+      line[strcspn(line, "\n")] = '\0';
+      strcpy(q.answers[i], line);
+    }
+
+    printf("Enter the correct answer: ");
+    fgets(line, sizeof(line), stdin);
+    line[strcspn(line, "\n")] = '\0';
+    strcpy(q.correctAns, line);
+
+    col->questions[col->size] = q;
+    col->size++;
+
+    write_questions("questions.txt",col);
+    printf("Question added successfully!\n");
 }
 
 
+
 int main() {
-    Collection col;
-    col.size = 0;
+    // Collection col;
+    // col.size = 0;
 
-    Question q1 = {"What is the capital of France?", 1, {"Paris", "Rome", "Berlin", "Madrid"}, "Paris"};
-    col.questions[col.size++] = q1;
+    // Question q1 = {"What is the capital of France?", 1, {"Paris", "Rome", "Berlin", "Madrid"}, "Paris"};
+    // col.questions[col.size++] = q1;
 
-    Question q2 = {"What is the largest planet in our solar system?", 3, {"Jupiter", "Saturn", "Mars", "Earth"}, "Jupiter"};
-    col.questions[col.size++] = q2;
+    // Question q2 = {"What is the largest planet in our solar system?", 3, {"Jupiter", "Saturn", "Mars", "Earth"}, "Jupiter"};
+    // col.questions[col.size++] = q2;
 
-    Question q3 = {"Who wrote 'To Kill a Mockingbird'?", 6, {"Harper Lee", "Mark Twain", "Ernest Hemingway", "J.K. Rowling"}, "Harper Lee"};
-    col.questions[col.size++] = q3;
+    // Question q3 = {"Who wrote 'To Kill a Mockingbird'?", 6, {"Harper Lee", "Mark Twain", "Ernest Hemingway", "J.K. Rowling"}, "Harper Lee"};
+    // col.questions[col.size++] = q3;
 
-    write_questions("questions.txt", &col);
+    //write_questions("questions.txt", &col);
  
     Collection* col2;
 
     col2 = read_questions("questions.txt");
     print(col2);
 
+    add_question(col2);
+    col2 = read_questions("questions.txt");
+    print(col2);
     return 0;
 }
