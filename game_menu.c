@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "money.c"
+#include "logic.h"
 
 void display_menu(){
     
@@ -34,7 +34,7 @@ int main(){
                 play_game(col); 
                 break;
             case 2:
-                add_question(col);
+                add_question("questions.txt",col);
                 break;
             case 3:
                 break;

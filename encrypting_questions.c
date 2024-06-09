@@ -114,9 +114,9 @@ void decrypt(char *input, char *output)
     fclose(out);
 }
 
-int main()
-{
-    encrypt("to_encrypt.txt", "encrypted.txt");
-    decrypt("encrypted.txt", "decrypted.txt");
-    return 0;
-}
+// int main()
+// {
+//     encrypt("to_encrypt.txt", "encrypted.txt");
+//     decrypt("encrypted.txt", "decrypted.txt");
+//     return 0;
+// }

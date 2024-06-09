@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "money.c"
+#include <time.h>
 #include "game_menu.c"
 
 void show_jokers(int jokers){
