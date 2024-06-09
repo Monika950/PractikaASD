@@ -14,13 +14,13 @@ void play_game(Collection* col){
     int jokers = 3;
     int current_question = 0;
 
-    Question current_question = col->questions[current_question];
+    Question* current_question = col->questions[current_question];
 
 
 }
 
 int main(){
-    Collection* col  = read_questions("questions.txt");
+    Collection* col  = read_file("questions.txt");
     int choice; 
     printf("\n BECOME RICH ");
 

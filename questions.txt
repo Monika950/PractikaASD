@@ -19,7 +19,7 @@ Mark Twain
 Ernest Hemingway
 J.K. Rowling
 Harper Lee
-kolko e 3
+KOLKO 3
 1
 =2
 =2
@@ -33,10 +33,3 @@ zle
 ok
 super
 dobre
-
-0
-
-
-
-
-

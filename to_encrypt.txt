@@ -1,1 +1,35 @@
-text to encrypt
+What is the capital of France?
+1
+Paris
+Rome
+Berlin
+Madrid
+Paris
+What is the largest planet in our solar system?
+3
+Jupiter
+Saturn
+Mars
+Earth
+Jupiter
+Who wrote 'To Kill a Mockingbird'?
+6
+Harper Lee
+Mark Twain
+Ernest Hemingway
+J.K. Rowling
+Harper Lee
+KOLKO 3
+1
+=2
+=2
+=3
+=1
+=3
+kak si?
+3
+dobre
+zle
+ok
+super
+dobre
