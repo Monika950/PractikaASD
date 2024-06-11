@@ -37,7 +37,7 @@ char* get_random_wrong_answer(Question *q){
     return q->answers[wrong_answers[index]];
 }
 
-void use_5050_joker(Question *q){
+void use_5050_joker(Question *q, int *remaining_options){
     int wrong_answers[3];
     int count = 0;
 
@@ -54,9 +54,10 @@ void use_5050_joker(Question *q){
         remove_idx2 = rand() % count;
     }while(remove_idx2 == remove_idx1);
 
+    int option_index = 0;
     for(int i = 0; i < 4;i++){
-        if(i == wrong_answers[remove_idx1] || i == wrong_answers[remove_idx2]){
-            strcpy(q->answers[i], "");
+        if(i != wrong_answers[remove_idx1] && i != wrong_answers[remove_idx2]){
+            remaining_options[option_index++] = i;
         }
     }
 }
@@ -121,7 +122,7 @@ void play_game(Collection* col){
     while(current_question < QUESTIONS){
         Question q = selected_questions[current_question];
         printf("\n------------------------------\n");
-        printf("\n      QUESTION%d: %s\n", current_question + 1);
+        printf("\n      QUESTION %d\n", current_question + 1);
         printf("\n------------------------------\n");
         printf("%s\n", q.question);
         for(int i =  0;i < 4; i++){
@@ -147,13 +148,12 @@ void play_game(Collection* col){
                 switch(joker_choice){
                     case 1: 
                         if(jokers_left[0]){
-                            use_5050_joker(&q);
+                            int remaining_options[2];
+                            use_5050_joker(&q, remaining_options);
                             jokers_left[0] = 0;
                             printf("\nAfter using 50/50 joker, the reamaining options are:\n");
                             for(int i = 0; i < 4; i++){
-                                if(strcmp(q.answers[i],"") != 0){
-                                    printf("%d. %s\n", i + 1, q.answers[i]);
-                                }
+                                    printf("%d. %s\n",remaining_options[i] + 1, q.answers[remaining_options[i]]);
                             }
                         } else{
                             printf("50/50 joker is already used.\n");
