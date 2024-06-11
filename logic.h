@@ -2,6 +2,7 @@
 #define LOGIC_H
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #define Q_LEN 100
 #define ANS_LEN 50
