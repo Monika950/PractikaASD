@@ -13,8 +13,11 @@ void display_menu(){
     printf("\n Choice: ");
 }
 
-void show_jokers(int jokers){
-    printf("\nRemaining jokers: %d\n", jokers);
+void show_jokers(int jokers_left[3]){
+    printf("\nRemaining jokers: %d\n");
+    if(jokers_left[0]) printf("1. 50/50 (available)\n"); else printf("1. 50/50 (used)\n");
+    if(jokers_left[1]) printf("2. Call a friend (available)\n"); else printf("2. Call a friend (used)\n");
+    if(jokers_left[2]) printf("3. Audience help (available)\n"); else printf("3. Audience help (used)\n");
 }
 
 char* get_random_wrong_answer(Question *q){
@@ -57,7 +60,7 @@ void use_5050_joker(Question *q){
 
 void use_call_friend_joker(Question q, int difficulty){
     printf("Calling a friend....\n");
-    srnd(time(NULL));
+    srand(time(NULL));
     int chance = rand() % 100;
     printf("Friend suggests the right answer is:");
     if(chance < 50 + difficulty * 5){
@@ -91,15 +94,15 @@ void play_game(Collection* col){
         return;
     }
 
-    Question selected_questions[10];
+    Question selected_questions[QUESTIONS];
     srand(time(NULL));
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < QUESTIONS; i++){
         int index = rand() % col->size;
         selected_questions[i] = *col->questions[index];
     }
 
-    for(int i = 0; i < 10 - 9; i++){
-        for(int j = 0; j < 10 - i - 1;j++){
+    for(int i = 0; i < QUESTIONS - 1; i++){
+        for(int j = 0; j < QUESTIONS - i - 1;j++){
             if(selected_questions[i].difficulty > selected_questions[j + 1].difficulty){
                 Question temp = selected_questions[j];
                 selected_questions[j] = selected_questions[j+1];
@@ -109,12 +112,12 @@ void play_game(Collection* col){
     }
     
     int score = 0;
-    int jokers = 3;
+   // int jokers = 3;
+    int jokers_left[3] = {1, 1, 1};
     int current_question = 0;
 
-    while(current_question < 10){
+    while(current_question < QUESTIONS){
         Question q = selected_questions[current_question];
-
         printf("\nQuestion %d: %s\n", current_question + 1, q.question);
         for(int i =  0;i < 4; i++){
             if(strcmp(q.answers[i], "") != 0){
@@ -122,34 +125,42 @@ void play_game(Collection* col){
             }
         }
 
-        show_jokers(jokers);
+        show_jokers(jokers_left);
         printf("Enter your answer (1-4) or 'j' to use a joker: ");
-        char choice[10];
+        char choice[QUESTIONS];
         fgets(choice, sizeof(choice), stdin);
         choice[strcspn(choice, "\n")] = '\0';
 
         if(strcmp(choice, "j") == 0){
-            if(jokers > 0){
-                jokers--;
+            if(jokers_left[0] || jokers_left[1] || jokers_left[2]){
                 int joker_choice;
                 printf("Choose a joker:\n");
-                printf("1. 50/50\n2. Call a friend\n3. Audience help\n");
+                show_jokers(jokers_left);
                 scanf("%d", &joker_choice);
                 getchar();
 
                 switch(joker_choice){
                     case 1: 
-                        use_5050_joker(&q);
+                        if(jokers_left[0]){
+                            use_5050_joker(&q);
+                        } else
+                        jokers_left[0] = 0;
                         break;
                     case 2:
-                        use_call_friend_joker(q, q.difficulty);
+                        if(jokers_left[1]){
+                            use_call_friend_joker(q, q.difficulty);
+
+                        }
+                        jokers_left[1] = 0;
                         break;
                     case 3:
-                        use_audience_help_joker(q, q.difficulty);
+                        if(jokers_left[2]){
+                            use_audience_help_joker(q, q.difficulty);
+                        }
+                        jokers_left[2] = 0;
                         break;
                     default:
                         printf("Invalid joker.\n");
-                        jokers++;
                         break;
                 }
 
@@ -175,7 +186,7 @@ void play_game(Collection* col){
 
         }
 
-        if(current_question == 10){
+        if(current_question == QUESTIONS){
             printf("Congratulations!! You won!!\n");
         }
         
