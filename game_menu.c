@@ -7,17 +7,20 @@
 #define QUESTIONS 3
 
 void display_menu(){
-    
-    printf("\n Options:");
-    printf("\n 1. Start a new game.\n 2. Add question.\n 3. Edit question.\n 4. Exit.");
+    printf("\n------------------------------\n");
+    printf("        MAIN MENU       \n");
+    printf("\n------------------------------\n");
+    printf("\n 1. Start a New Game\n 2. Add a Question\n 3. Edit a Question\n 4. Exit\n");
+    printf("\n------------------------------\n");
     printf("\n Choice: ");
 }
 
 void show_jokers(int jokers_left[3]){
-    printf("\nRemaining jokers\n");
-    if(jokers_left[0]) printf("1. 50/50 (available)\n"); else printf("1. 50/50 (used)\n");
-    if(jokers_left[1]) printf("2. Call a friend (available)\n"); else printf("2. Call a friend (used)\n");
-    if(jokers_left[2]) printf("3. Audience help (available)\n"); else printf("3. Audience help (used)\n");
+    printf("\n------------------------------\n");
+    printf("        REMAINING JOKERS        \n");
+    if(jokers_left[0]) printf(" 1. 50/50 (available)\n"); else printf(" 1. 50/50 (used)\n");
+    if(jokers_left[1]) printf(" 2. Call a friend (available)\n"); else printf(" 2. Call a friend (used)\n");
+    if(jokers_left[2]) printf(" 3. Audience help (available)\n"); else printf(" 3. Audience help (used)\n");
 }
 
 char* get_random_wrong_answer(Question *q){
@@ -59,10 +62,10 @@ void use_5050_joker(Question *q){
 }
 
 void use_call_friend_joker(Question q, int difficulty){
-    printf("Calling a friend....\n");
+    printf("\nCalling a friend....\n");
     srand(time(NULL));
     int chance = rand() % 100;
-    printf("Friend suggests the right answer is:");
+    printf("Friend suggests the right answer is: ");
     if(chance < 50 + difficulty * 5){
         printf("%s\n", q.correctAns);
     }else{
@@ -72,7 +75,7 @@ void use_call_friend_joker(Question q, int difficulty){
 }
 
 void use_audience_help_joker(Question q, int difficulty){
-    printf("Audience poll...\n");
+    printf("\nAudience poll...\n");
     srand(time(NULL));
     int correct_chance = 50 + difficulty *5;
     printf("Audience suggests:\n");
@@ -117,7 +120,10 @@ void play_game(Collection* col){
 
     while(current_question < QUESTIONS){
         Question q = selected_questions[current_question];
-        printf("\nQuestion %d: %s\n", current_question + 1, q.question);
+        printf("\n------------------------------\n");
+        printf("\n      QUESTION%d: %s\n", current_question + 1);
+        printf("\n------------------------------\n");
+        printf("%s\n", q.question);
         for(int i =  0;i < 4; i++){
             if(strcmp(q.answers[i], "") != 0){
                 printf("%d. %s\n", i + 1, q.answers[i]);
@@ -143,7 +149,7 @@ void play_game(Collection* col){
                         if(jokers_left[0]){
                             use_5050_joker(&q);
                             jokers_left[0] = 0;
-                            printf("\nAfter using 50/50 joker:\n");
+                            printf("\nAfter using 50/50 joker, the reamaining options are:\n");
                             for(int i = 0; i < 4; i++){
                                 if(strcmp(q.answers[i],"") != 0){
                                     printf("%d. %s\n", i + 1, q.answers[i]);
@@ -210,7 +216,9 @@ void play_game(Collection* col){
 int main(){
     Collection* col  = read_file("encrypted.txt");
     int choice; 
-    printf("\n BECOME RICH ");
+    printf("\n------------------------------\n");
+    printf("\n      BECOME RICH GAME        ");
+    printf("\n------------------------------\n");
 
     while(1){
         display_menu();
