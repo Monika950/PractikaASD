@@ -1,4 +1,4 @@
-main.exe: main.c logic.o
-	gcc main.c logic.o	-o main.exe
+game_menu.exe: game_menu.c logic.o
+	gcc game_menu.c logic.o	-o game_menu.exe
 logic.o: logic.c logic.h
 	gcc -c logic.c -o logic.o
