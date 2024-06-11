@@ -14,7 +14,7 @@ void display_menu(){
 }
 
 void show_jokers(int jokers_left[3]){
-    printf("\nRemaining jokers: %d\n");
+    printf("\nRemaining jokers\n");
     if(jokers_left[0]) printf("1. 50/50 (available)\n"); else printf("1. 50/50 (used)\n");
     if(jokers_left[1]) printf("2. Call a friend (available)\n"); else printf("2. Call a friend (used)\n");
     if(jokers_left[2]) printf("3. Audience help (available)\n"); else printf("3. Audience help (used)\n");
@@ -112,7 +112,6 @@ void play_game(Collection* col){
     }
     
     int score = 0;
-   // int jokers = 3;
     int jokers_left[3] = {1, 1, 1};
     int current_question = 0;
 
@@ -143,21 +142,32 @@ void play_game(Collection* col){
                     case 1: 
                         if(jokers_left[0]){
                             use_5050_joker(&q);
-                        } else
-                        jokers_left[0] = 0;
+                            jokers_left[0] = 0;
+                            printf("\nAfter using 50/50 joker:\n");
+                            for(int i = 0; i < 4; i++){
+                                if(strcmp(q.answers[i],"") != 0){
+                                    printf("%d. %s\n", i + 1, q.answers[i]);
+                                }
+                            }
+                        } else{
+                            printf("50/50 joker is already used.\n");
+                        }
                         break;
                     case 2:
                         if(jokers_left[1]){
                             use_call_friend_joker(q, q.difficulty);
-
+                            jokers_left[1] = 0;
+                        } else {
+                            printf("Call a friend joker is already used.\n");
                         }
-                        jokers_left[1] = 0;
                         break;
                     case 3:
                         if(jokers_left[2]){
                             use_audience_help_joker(q, q.difficulty);
+                            jokers_left[2] = 0;
+                        } else {
+                            printf("Audience help joker is already used.\n");
                         }
-                        jokers_left[2] = 0;
                         break;
                     default:
                         printf("Invalid joker.\n");
