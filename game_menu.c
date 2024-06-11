@@ -4,6 +4,7 @@
 #include <stdlib.h> 
 #include "logic.h"
 
+#define QUESTIONS 3
 
 void display_menu(){
     
@@ -40,7 +41,7 @@ void use_5050_joker(Question *q){
         }
     }
 
-    scrand(time(NULL));
+    srand(time(NULL));
     int remove_idx1 = rand() % count;
     int remove_idx2;
     do{
@@ -56,7 +57,7 @@ void use_5050_joker(Question *q){
 
 void use_call_friend_joker(Question q, int difficulty){
     printf("Calling a friend....\n");
-    scarnd(time(NULL));
+    srnd(time(NULL));
     int chance = rand() % 100;
     printf("Friend suggests the right answer is:");
     if(chance < 50 + difficulty * 5){
@@ -85,7 +86,7 @@ void use_audience_help_joker(Question q, int difficulty){
 
 
 void play_game(Collection* col){
-    if(col->size < 10){
+    if(col->size < QUESTIONS){
         printf("Not enough questions to start the game. \n");
         return;
     }
