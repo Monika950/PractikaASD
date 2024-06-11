@@ -153,7 +153,7 @@ void play_game(Collection* col){
                             jokers_left[0] = 0;
                             printf("\nAfter using 50/50 joker, the reamaining options are:\n");
                             for(int i = 0; i < 4; i++){
-                                    printf("%d. %s\n",remaining_options[i] + 1, q.answers[remaining_options[i]]);
+                                printf("%d. %s\n",remaining_options[i] + 1, q.answers[remaining_options[i]]); 
                             }
                         } else{
                             printf("50/50 joker is already used.\n");
@@ -180,7 +180,7 @@ void play_game(Collection* col){
                         break;
                 }
 
-            }else{
+            }else {
                 printf("No jokers left. \n");
             }
             continue;
