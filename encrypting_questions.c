@@ -59,7 +59,7 @@ void encrypt(char *input, char *output)
 
 void decrypt(char *input, char *output)
 {
-    FILE *in = fopen(input, "r");
+    FILE *in = fopen(input, "rb");
     FILE *out = fopen(output, "w");
     FILE *key_file = fopen("key.txt", "r");
 
