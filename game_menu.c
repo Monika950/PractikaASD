@@ -7,7 +7,6 @@ void display_menu(){
     printf("\n Options:");
     printf("\n 1. Start a new game.\n 2. Add question.\n 3. Edit question.\n 4. Exit.");
     printf("\n Choice: ");
-
 }
 
 void show_jokers(int jokers){
