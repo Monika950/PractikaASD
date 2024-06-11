@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "encrypting_questions.h"
 
 void encrypt(char *input, char *output)
 {
@@ -25,32 +26,6 @@ void encrypt(char *input, char *output)
         key = key_char - '0';
         c = c + key;
         fputc(c, out);
-        // if (c >= 'a' && c <= 'z')
-        // {
-        //     c = c + key;
-        //     if (c > 'z')
-        //     {
-        //         c = c - 'z' + 'a' - key;
-        //     }
-        //     if (c < 'a')
-        //     {
-        //         c = c + ('z' - 'a' + 1);
-        //     }
-        //     fputc(c, out);
-        // }
-        // else if (c >= 'A' && c <= 'Z')
-        // {
-        //     c = c + key;
-        //     if (c > 'Z')
-        //     {
-        //         c = c - 'Z' + 'A' - key;
-        //     }
-        //     fputc(c, out);
-        // }
-        // else
-        // {
-        //     fputc(c, out);
-        // }
     }
 
     fclose(in);
@@ -82,41 +57,8 @@ void decrypt(char *input, char *output)
         key = key_char - '0';
         c = c - key;
         fputc(c, out);
-        // if (c >= 'a' && c <= 'z')
-        // {
-        //     c = c - key;
-        //     if (c < 'a')
-        //     {
-        //         c = c + 'z' - 'a' + key;
-        //     }
-        //     if (c > 'z')
-        //     {
-        //         c = c - ('z' - 'a' + 1);
-        //     }
-        //     fputc(c, out);
-        // }
-        // else if (c >= 'A' && c <= 'Z')
-        // {
-        //     c = c - key;
-        //     if (c < 'A')
-        //     {
-        //         c = c + 'Z' - 'A' + key;
-        //     }
-        //     fputc(c, out);
-        // }
-        // else
-        // {
-        //     fputc(c, out);
-        // }
     }
 
     fclose(in);
     fclose(out);
 }
-
-// int main()
-// {
-//     encrypt("to_encrypt.txt", "encrypted.txt");
-//     decrypt("encrypted.txt", "decrypted.txt");
-//     return 0;
-// }

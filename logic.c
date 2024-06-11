@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "logic.h"
-#include "encrypting_questions.c"
+#include "encrypting_questions.h"
 
 Question *create_question(char *question, int difficulty, char answers[4][ANS_LEN], char *correctAns)
 {

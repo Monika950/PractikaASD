@@ -198,7 +198,7 @@ void play_game(Collection* col){
 }
 
 int main(){
-    Collection* col  = read_file("questions.txt");
+    Collection* col  = read_file("encrypted.txt");
     int choice; 
     printf("\n BECOME RICH ");
 
@@ -213,10 +213,10 @@ int main(){
                 play_game(col); 
                 break;
             case 2:
-                add_question("questions.txt",col);
+                add_question("encrypted.txt",col);
                 break;
             case 3:
-                edit_question("questions.txt", col);
+                edit_question("encrypted.txt", col);
                 break;
             case 4:
                 printf("\n Exiting..");
