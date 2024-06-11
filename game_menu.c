@@ -129,8 +129,11 @@ void play_game(Collection* col){
             if(strcmp(q.answers[i], "") != 0){
                 printf("%d. %s\n", i + 1, q.answers[i]);
             }
-        }
 
+        }
+        
+        int answer_choice;
+        int flag = 0;
         show_jokers(jokers_left);
         printf("Enter your answer (1-4) or 'j' to use a joker: ");
         char choice[QUESTIONS];
@@ -148,13 +151,15 @@ void play_game(Collection* col){
                 switch(joker_choice){
                     case 1: 
                         if(jokers_left[0]){
-                            int remaining_options[1];
+                            int remaining_options[2];
                             use_5050_joker(&q, remaining_options);
                             jokers_left[0] = 0;
-                            printf("\nAfter using 50/50 joker, the reamaining options are:\n");
-                            for(int i = 0; i < 4; i++){
+                            
+                            printf("\nAfter using 50/50 joker, the remaining options are:\n");
+                            for(int i = 0; i < 2; i++){
                                 printf("%d. %s\n",remaining_options[i] + 1, q.answers[remaining_options[i]]); 
                             }
+
                         } else{
                             printf("50/50 joker is already used.\n");
                         }
@@ -185,7 +190,7 @@ void play_game(Collection* col){
             }
             continue;
         }else{
-            int answer_choice = atoi(choice);
+            answer_choice = atoi(choice);
             if(answer_choice < 1 || answer_choice > 4 || strcmp(q.answers[answer_choice - 1], "") == 0){
                 printf("Invalid answer.\n");
                 continue;
