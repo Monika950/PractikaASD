@@ -57,7 +57,7 @@ void use_5050_joker(Question *q){
 
 void use_call_friend_joker(Question q, int difficulty){
     printf("Calling a friend....\n");
-    srnd(time(NULL));
+    srand(time(NULL));
     int chance = rand() % 100;
     printf("Friend suggests the right answer is:");
     if(chance < 50 + difficulty * 5){
@@ -187,7 +187,7 @@ void play_game(Collection* col){
 }
 
 int main(){
-    Collection* col  = read_file("questions.txt");
+    Collection* col  = read_file("encrypted.txt");
     int choice; 
     printf("\n BECOME RICH ");
 
@@ -202,10 +202,10 @@ int main(){
                 play_game(col); 
                 break;
             case 2:
-                add_question("questions.txt",col);
+                add_question("encrypted.txt",col);
                 break;
             case 3:
-                edit_question("questions.txt", col);
+                edit_question("encrypted.txt", col);
                 break;
             case 4:
                 printf("\n Exiting..");
