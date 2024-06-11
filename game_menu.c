@@ -148,7 +148,7 @@ void play_game(Collection* col){
                 switch(joker_choice){
                     case 1: 
                         if(jokers_left[0]){
-                            int remaining_options[2];
+                            int remaining_options[1];
                             use_5050_joker(&q, remaining_options);
                             jokers_left[0] = 0;
                             printf("\nAfter using 50/50 joker, the reamaining options are:\n");
