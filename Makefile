@@ -4,3 +4,5 @@ logic.o: logic.c logic.h encrypting_questions.h
 	gcc -c logic.c -o logic.o 
 encrypting_questions.o : encrypting_questions.c encrypting_questions.h
 	gcc -c encrypting_questions.c -o encrypting_questions.o
+
+

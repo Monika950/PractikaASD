@@ -48,15 +48,11 @@ void use_5050_joker(Question *q, int *remaining_options){
     }
 
     srand(time(NULL));
-    int remove_idx1 = rand() % count;
-    int remove_idx2;
-    do{
-        remove_idx2 = rand() % count;
-    }while(remove_idx2 == remove_idx1);
+    int keep_wrong_idx = rand() % count;
 
     int option_index = 0;
     for(int i = 0; i < 4;i++){
-        if(i != wrong_answers[remove_idx1] && i != wrong_answers[remove_idx2]){
+        if(strcmp(q->answers[i], q->correctAns) == 0 || i == wrong_answers[keep_wrong_idx]){
             remaining_options[option_index++] = i;
         }
     }
