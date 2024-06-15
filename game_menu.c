@@ -7,16 +7,16 @@
 #define QUESTIONS 3
 
 void display_menu(){
-    printf("\n------------------------------\n");
+   // printf("\n------------------------------\n");
     printf("        MAIN MENU       \n");
-    printf("\n------------------------------\n");
+   // printf("\n------------------------------\n");
     printf("\n 1. Start a New Game\n 2. Add a Question\n 3. Edit a Question\n 4. Exit\n");
-    printf("\n------------------------------\n");
+    //printf("\n------------------------------\n");
     printf("\n Choice: ");
 }
 
 void show_jokers(int jokers_left[3]){
-    printf("\n------------------------------\n");
+   // printf("\n------------------------------\n");
     printf("        REMAINING JOKERS        \n");
     if(jokers_left[0]) printf(" 1. 50/50 (available)\n"); else printf(" 1. 50/50 (used)\n");
     if(jokers_left[1]) printf(" 2. Call a friend (available)\n"); else printf(" 2. Call a friend (used)\n");
@@ -117,9 +117,9 @@ void play_game(Collection* col){
 
     while(current_question < QUESTIONS){
         Question q = selected_questions[current_question];
-        printf("\n------------------------------\n");
+        //printf("\n------------------------------\n");
         printf("\n      QUESTION %d\n", current_question + 1);
-        printf("\n------------------------------\n");
+        //printf("\n------------------------------\n");
         printf("%s\n", q.question);
         for(int i =  0;i < 4; i++){
             if(strcmp(q.answers[i], "") != 0){
@@ -217,9 +217,9 @@ void play_game(Collection* col){
 int main(){
     Collection* col  = read_file("encrypted.txt");
     int choice; 
-    printf("\n------------------------------\n");
+    //printf("\n------------------------------\n");
     printf("\n      BECOME RICH GAME        ");
-    printf("\n------------------------------\n");
+    //printf("\n------------------------------\n");
 
     while(1){
         display_menu();
