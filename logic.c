@@ -26,7 +26,7 @@ Question *create_question(char *question, int difficulty, char answers[4][ANS_LE
   return q;
 }
 
-Collection *init_collection()
+Collection *init_collection() 
 {
   Collection *col = (Collection *)calloc(1, sizeof(Collection));
   if (col == NULL)
@@ -51,6 +51,19 @@ bool delete_file(char *filename)
   }
 }
 
+void write_question(FILE *file, Collection *collection, int i)
+{
+  Question *q = collection->questions[i];
+    fprintf(file, "%s\n%d\n", q->question, q->difficulty);
+
+    for (int i = 0; i < 4; i++)
+    {
+      fprintf(file, "%s\n", q->answers[i]);
+    }
+
+    fprintf(file, "%s\n", q->correctAns);
+}
+
 void write_questions(char *filename, Collection *collection)
 {
     char decrypted_file[] = "decrypted.txt";
@@ -68,15 +81,17 @@ void write_questions(char *filename, Collection *collection)
 
   for (int i = 0; i < collection->size; i++)
   {
-    Question *q = collection->questions[i];
-    fprintf(file, "%s\n%d\n", q->question, q->difficulty);
+    // Question *q = collection->questions[i];
+    // fprintf(file, "%s\n%d\n", q->question, q->difficulty);
 
-    for (int i = 0; i < 4; i++)
-    {
-      fprintf(file, "%s\n", q->answers[i]);
-    }
+    // for (int i = 0; i < 4; i++)
+    // {
+    //   fprintf(file, "%s\n", q->answers[i]);
+    // }
 
-    fprintf(file, "%s\n", q->correctAns);
+    // fprintf(file, "%s\n", q->correctAns);
+
+    write_question(file,collection,i);
   }
 
   fclose(file);
