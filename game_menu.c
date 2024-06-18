@@ -218,7 +218,7 @@ int main(){
     Collection* col  = read_file("encrypted.txt");
     int choice; 
     //printf("\n------------------------------\n");
-    printf("\n      BECOME RICH GAME        ");
+    printf("\n      BECOME RICH GAME        \n");
     //printf("\n------------------------------\n");
 
     while(1){
